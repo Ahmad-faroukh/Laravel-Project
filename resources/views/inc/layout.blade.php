@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>Eiser ecommerce</title>
+    <link rel="icon" href="{{asset('img/icon.png')}}" type="image/png" />
+    <title>Ahmad Store</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" />
     <link rel="stylesheet" href="{{asset('vendors/linericon/style.css')}}" />
@@ -28,18 +28,18 @@
 <!--================Header Menu Area =================-->
 <header class="header_area">
 
-    <div class="main_menu">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
+    <div class="main_menu bg-dark">
+        <div class="container bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-light w-100 bg-dark">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="/">
-                    <img src="img/logo.png" alt="" />
+                    <img src="{{asset('img/logo.png')}}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar bg-white"></span>
+                    <span class="icon-bar bg-white"></span>
+                    <span class="icon-bar bg-white"></span>
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
@@ -51,21 +51,24 @@
                                     <a class="nav-link" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/search">Browse</a>
+                                    <a class="nav-link text-white" href="{{route('browse')}}">Browse</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{route('search')}}">Search</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/checkout">Product Checkout</a>
+                                            <a class="nav-link text-white" href="/checkout">Product Checkout</a>
                                         </li>
 
                                     </ul>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/contact">About US</a>
+                                    <a class="nav-link text-white" href="/contact">About US</a>
                                 </li>
 
                             </ul>
@@ -78,7 +81,7 @@
 
                                 @guest
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -88,18 +91,18 @@
 
                                     @if (Route::has('register'))
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
                                     @endif
                                     @else
 
                                         <li class="nav-item">
-                                            <i class="ti-shopping-cart"></i>
-                                            <a class="nav-link" href="/cart">My Cart</a>
+                                            <i class="ti-shopping-cart active"></i>
+                                            <a class="nav-link text-white" href="/cart">My Cart</a>
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                                 {{ Auth::user()->name }} <span class="caret"></span>
                                             </a>
 
@@ -109,7 +112,7 @@
                                                          document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
-                                                <a class="dropdown-item" href="/add-product">
+                                                <a class="dropdown-item" href="{{route('add-product')}}">
                                                     List Product For Sale
                                                 </a>
 
@@ -147,6 +150,7 @@
 <!--================ start footer Area  =================-->
 <footer class="footer-area section_gap">
     <div class="container">
+        <!--
         <div class="row">
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Top Products</h4>
@@ -202,15 +206,17 @@
                 </div>
             </div>
         </div>
+
+        -->
         <div class="footer-bottom row align-items-center">
+            <p class="footer-text m-0 col-lg-8 col-md-12">Webstie Made By Ahamd Faroukh</p>
             <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> Template By <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
             <div class="col-lg-4 col-md-12 footer-social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-behance"></i></a>
             </div>
         </div>
     </div>

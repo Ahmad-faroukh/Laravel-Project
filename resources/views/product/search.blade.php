@@ -7,13 +7,13 @@
         <div class="container">
             <div class="banner_content d-md-flex justify-content-between align-items-center">
                 <div class="mb-3 mb-md-0">
-                    <h2>Shop Category</h2>
-                    <p>Very us move be blessed multiply night</p>
+                    <h2>Search Shop</h2>
+                    <p>Search Among The Best Products Out There</p>
                 </div>
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="category.html">Shop</a>
-                    <a href="category.html">Women Fashion</a>
+                    <a href="{{route('home')}}">Home</a>
+                    <a href="{{route('search')}}">Products</a>
+                    <a href="{{route('search')}}">Search</a>
                 </div>
             </div>
         </div>
@@ -50,17 +50,18 @@
 
                                 <div class="col-lg-12 col-md-4">
                                     <div class="single-product">
-                                        <!--
-                                        <div class="product-img">
+
+                                        <div class="product-img col-lg-3 rounded float-right">
                                             <img
-                                                    class="card-img"
-                                                    src="img/product/inspired-product/i8.jpg"
-                                                    alt=""
-                                            />
+                                                        class="card-img"
+                                                        src="/storage/product-images/{{$product->image}}"
+                                                        alt=""
+                                                        style="width: 100%"
+                                                />
                                         </div>
-                                        -->
+
                                         <div class="product-btm">
-                                            <a href="view/{{$product->id}}" class="d-block" style="word-break:break-word; overflow-wrap: break-word">
+                                            <a href="/product/view/{{$product->id}}" class="d-block" style="word-break:break-word; overflow-wrap: break-word">
                                                 <h4>{{$product->name}}</h4>
                                             </a>
                                             <div class="mt-3">

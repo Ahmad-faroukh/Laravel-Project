@@ -10,16 +10,15 @@
                             <h3>List Product For Sale</h3>
                             <form
                                     class="row contact_form"
-                                    action="/add-product/submit"
+                                    action="{{route('product-submit')}}"
                                     method="post"
-                                    novalidate="novalidate"
+                                    enctype="multipart/form-data"
                             >
                                 @csrf
                                 <div class="col-md-12 form-group ">
                                     <input
                                             type="text"
                                             class="form-control {{$errors->has('name') ? "alert alert-danger bg-white" : ''}}"
-                                            id="first"
                                             name="name"
                                             placeholder="Product Name"
                                             maxlength="190"
@@ -33,7 +32,6 @@
                                 <textarea
                                         class="form-control {{$errors->has('description') ? "alert alert-danger bg-white" : ''}}"
                                         name="description"
-                                        id="message"
                                         rows="1"
                                         placeholder="Product Description"
                                 ></textarea>
@@ -46,7 +44,6 @@
                                     <input
                                             type="text"
                                             class="form-control {{$errors->has('price') ? "alert alert-danger bg-white" : ''}}"
-                                            id="last"
                                             name="price"
                                             placeholder="Price"
                                             maxlength="10"
@@ -56,22 +53,21 @@
                                     @endif
                                 </div>
 
-
                                 <div class="col-md-12 form-group">
+                                    <span>Product Image (Optional)</span>
                                     <input
-                                            type="text"
+                                            type="file"
                                             class="form-control"
-                                            id="number"
-                                            name="number"
+                                            name="image"
+                                            placeholder="Product Image"
                                     />
-                                    <span
-                                            class="placeholder"
-                                            data-placeholder="Phone number"
-                                    ></span>
+                                    @if($errors->has('image'))
+                                        <p class="text-danger">{{$errors->first('image')}}</p>
+                                    @endif
                                 </div>
 
                                 <div class="col-md-12 form-group">
-                                    <button class="main_btn" href="#" type="submit">List Product</button>
+                                    <button class="main_btn" type="submit">List Product</button>
                                 </div>
 
                             </form>

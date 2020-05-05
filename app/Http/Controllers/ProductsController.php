@@ -26,7 +26,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('price','desc')->paginate(7);
+        $products = Product::orderByRaw("FIELD(image,'null') ASC")->orderBy('created_at','DESC')->paginate(9);
+        return view('product/browse')->with('products', $products);
+    }
+
+    public function search()
+    {
+        $products = Product::orderByRaw("FIELD(image,'null') ASC")->orderBy('created_at','DESC')->paginate(7);
         return view('product/search')->with('products', $products);
     }
 
@@ -51,19 +57,39 @@ class ProductsController extends Controller
         $request->validate([
            'name' => ['required','max:190'],
            'description' => 'required',
+           'image' => ['nullable','max:1999','image'],
             'price' => ['required','numeric','max:99999999999'],
         ]);
+
+        if($request->hasfile('image')){
+            //get the file name with the extension(jpg,png,...)
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            //get just the filename
+            $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            //get the file extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            //final file name with extension concatenated with date to make it unique
+            $fileNameToStore = $fileName.'_' .time(). '.' .$extension;
+
+            //save the image in cover_images folder in storage/public/cover_images
+            $path = $request->file('image')->storeAs('public/product-images',$fileNameToStore);
+
+
+        }else{
+            $fileNameToStore = 'null';
+        }
 
         $product = new Product();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->user_id = auth()->user()->id;
-        $product->image = "nll";
+        $product->image = $fileNameToStore;
 
         $product->save();
 
-        return redirect('product/search');
+        return redirect('product/browse');
     }
 
     /**

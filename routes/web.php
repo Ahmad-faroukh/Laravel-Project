@@ -18,10 +18,11 @@ Route::get('checkout','PagesController@checkout');
 Route::get('contact','PagesController@contact');
 
 
-Route::get('view/{product}','ProductsController@show');
-Route::get('add-product','ProductsController@create');
-Route::post('add-product/submit','ProductsController@store');
-Route::get('search','ProductsController@index');
+Route::get('product/view/{product}','ProductsController@show');
+Route::get('product/add','ProductsController@create')->name('add-product');
+Route::post('product/submit','ProductsController@store')->name('product-submit');
+Route::get('product/search','ProductsController@search')->name('search');
+Route::get('product/browse','ProductsController@index')->name('browse');
 
 
 Auth::routes();
